@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ListaCompra4</string>
+    <string name="lblModifica">Modifica</string>
+    <string name="lblElimina">Elimina</string>
+    <string name="lblNombre">Nombre</string>
+    <string name="lblCantidad">Cantidad</string>
+    <string name="msgNoPos">Posición incorrecta</string>
+    <string name="pistaNombre">Nombre...</string>
+</resources>

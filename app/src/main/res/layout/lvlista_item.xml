@@ -1,0 +1,21 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView android:id="@+id/lvLista_Item_Nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView android:id="@+id/lvLista_Item_Num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:gravity="end|center_vertical" />
+</LinearLayout>
