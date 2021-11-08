@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.lvlista_item,
                 null,
                 new String[] { DBManager.COMPRA_COL_NOMBRE, DBManager.COMPRA_COL_NUM },
-                new int[] { R.id.lvLista_Item_Nombre, R.id.lvLista_Item_Num }
+                new int[] { R.id.lvLista_Item_Nombre, R.id.lvLista_Item_Num },
+                0
         );
 
         lvLista.setAdapter( this.adaptadorDB );
