@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView lvLista;
     private Button btAdd;
+    private TextView tv_filtro;
 
 
     //----------------------------------------------------------------------------------------
@@ -95,8 +96,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void actualizar(int filtro){
+    public void actualizar(int filtro) {
         this.adaptadorDB.changeCursor(gestorDB.getTareasFiltradas(filtro)); //Actualizar lista en funcion de los parametros de filtrado
+
+        tv_filtro = (TextView) this.findViewById(R.id.tv_filtro);
+
+        switch (filtro){
+            case 0: tv_filtro.setText("Todas"); break;
+            case 1: tv_filtro.setText("Pendientes"); break;
+            case 2: tv_filtro.setText("Finalizadas"); break;
+
+        }
+
     }
 
 

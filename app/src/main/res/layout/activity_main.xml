@@ -45,16 +45,27 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="271dp"
+            android:layout_width="44dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/tv_lista"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_filtro"
+            android:layout_width="13dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/bt_add"
             android:layout_width="132dp"
             android:layout_height="41dp"
             android:text="@string/bt_add" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
