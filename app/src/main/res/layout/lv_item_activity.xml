@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5sp">
+
+    <LinearLayout
+        android:id="@+id/lv_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:longClickable="true"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5sp">
+
+            <TextView
+                android:id="@+id/tv_lista_nombre"
+                android:layout_width="221dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nombre"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ID:"
+                android:textAlignment="textEnd"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_lista_id"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="id"
+                android:textAlignment="textEnd"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_lista_descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5sp"
+            android:text="lorem fjehlruet rahtorehtore terhtoperh tgoergerfg lotrdyutsrytr ytrsytrsystrght dh trsyrsy trshhhhhtr strysrtyhsgf sruy rhtrgstr  yhrrem+" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5sp">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tv_fechaCad" />
+
+            <TextView
+                android:id="@+id/tv_lista_fecha"
+                android:layout_width="89dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingHorizontal="5sp">
+
+            <Button
+                android:id="@+id/bt_lista_finalizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/purple_200"
+                android:text="@string/bt_finalizar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/options_borrar"
+        android:title="@string/opt_borrar" />
+    <item
+        android:id="@+id/options_filtrar"
+        android:title="@string/opt_filtrar" />
+    <item
+        android:id="@+id/options_resumen"
+        android:title="@string/opt_resumen" />
+</menu>
