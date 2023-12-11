@@ -1,4 +1,4 @@
-package org.esei.dm.listacompra4;
+package org.esei.dm.taskminder;
 
 import android.content.Context;
 

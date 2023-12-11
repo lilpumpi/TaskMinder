@@ -1,9 +1,31 @@
 <resources>
-    <string name="app_name">ListaCompra4</string>
-    <string name="lblModifica">Modifica</string>
-    <string name="lblElimina">Elimina</string>
-    <string name="lblNombre">Nombre</string>
-    <string name="lblCantidad">Cantidad</string>
-    <string name="msgNoPos">Posición incorrecta</string>
-    <string name="pistaNombre">Nombre...</string>
+    <string name="app_name">TASKMINDER</string>
+
+    //menus
+    <string name="opt_borrar">Borrar todo</string>
+    <string name="opt_filtrar">Filtrar</string>
+    <string name="opt_resumen">Resumen</string>
+    <string name="ctx_borrar">Borrar</string>
+    <string name="ctx_modificar">Modificar</string>
+    <string name="ctx_finalizar">Finalizar tarea</string>
+
+    //Botones
+    <string name="bt_add">Añadir</string>
+    <string name="bt_fecha">Seleccionar fecha</string>
+    <string name="bt_cacnelar">Cancelar</string>
+    <string name="bt_guardar">Guardar</string>
+    <string name="bt_finalizar">Finalizar</string>
+
+    //TextView
+    <string name="tv_nombre">Nombre: </string>
+    <string name="tv_descripcion">Descripcion: </string>
+    <string name="tv_fechaCad">Fecha de caducidad: </string>
+    <string name="tv_fecha">fecha</string>
+    <string name="resumen_total">Tareas totales: </string>
+    <string name="resumen_penidentes">Tareas pendientes: </string>
+    <string name="resumen_finalizadas">Tareas finalizadas: </string>
+    <string name="tv_lista">Lista de tareas guardadas</string>
+
+
+
 </resources>
