@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +65,8 @@ public class EditorActivity extends AppCompatActivity {
         Log.i("Completado?", "TAREA COMPLETADA?????????: " + completado + "--------------------------------------------------");
 
         //Habilitamos los botones
+
+        //Configuramos el click del boton para seleccionar una fecha
         bt_fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +75,7 @@ public class EditorActivity extends AppCompatActivity {
             }
         });
 
+        //Configuramos el click del boton para cancelar la operacion
         bt_cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +84,46 @@ public class EditorActivity extends AppCompatActivity {
             }
         });
 
+
+        //Detectamos cuando cambian los inputs, si cambian y son validos se habilita el boton de guardar
+        bt_guardar.setEnabled(false);
+        et_nombre.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) { //Cuando se cambie el nombre se habilitara el boton guardar solo si los campos son validos
+                bt_guardar.setEnabled(comprobarInputs(et_nombre.getText().toString(), et_descripcion.getText().toString()));
+            }
+        });
+
+        et_descripcion.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) { //Cuando se cambie la descripcion se habilitara el boton guardar solo si los campos son validos
+                bt_guardar.setEnabled(comprobarInputs(et_nombre.getText().toString(), et_descripcion.getText().toString()));
+            }
+        });
+
+
+
+        //Configuramos el click del boton para guardar los cambios
         bt_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +144,15 @@ public class EditorActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    //Desde aqui comprobaremos que el nombre y la descripcion no sean vacios
+    private boolean comprobarInputs(String nombre, String descripcion){
+        if((nombre.trim().length()) > 0 && (descripcion.trim().length() > 0)){
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -124,6 +178,7 @@ public class EditorActivity extends AppCompatActivity {
                 fecha.set(year, month, dayOfMonth);
 
                 tv_fecha.setText(formatDateToString(fecha));
+                bt_guardar.setEnabled(comprobarInputs(et_nombre.getText().toString(), et_descripcion.getText().toString()));
 
             }
         }, currentYear, currentMonth, currentDay);

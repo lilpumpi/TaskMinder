@@ -29,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Nombre"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -55,7 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="5sp"
-            android:text="lorem fjehlruet rahtorehtore terhtoperh tgoergerfg lotrdyutsrytr ytrsytrsystrght dh trsyrsy trshhhhhtr strysrtyhsgf sruy rhtrgstr  yhrrem+" />
+            android:text="lorem fjehlruet rahtorehtore terhtoperh tgoergerfg lotrdyutsrytr ytrsytrsystrght dh trsyrsy trshhhhhtr strysrtyhsgf sruy rhtrgstr  yhrrem+"
+            android:textStyle="italic" />
 
         <LinearLayout
             android:layout_width="match_parent"
