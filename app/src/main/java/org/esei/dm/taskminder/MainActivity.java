@@ -167,8 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.options_borrar:
-                gestorDB.eliminarTodo();
-                actualizar(filtroActual);
+                confirmarBorrar(-1); //Borrar todas las tareas
                 break;
 
             case R.id.options_resumen:
@@ -202,8 +201,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.context_borrar:
                 if (cursor.moveToPosition(pos)) {
                     int id = cursor.getInt(0);//0 porque el id es el primer argumento
-                    gestorDB.eliminarTarea(id);
-                    actualizar(filtroActual);
+                    confirmarBorrar(id); //Borrar la tarea
                 } else {
                     Log.e("Context.eliminar", "Posicion incorrecta");
                     Toast.makeText(this, "Posicion incorrecta", Toast.LENGTH_SHORT).show();
@@ -284,8 +282,48 @@ public class MainActivity extends AppCompatActivity {
 
 
     //----------------------------------------------------------------------------------------
-    //  GESTION DE ALTER DIALOGS
+    //  GESTION DE ALTERT DIALOGS
     //----------------------------------------------------------------------------------------
+
+
+    //Pedirá confirmación al usuario antes de borrar un elemento, recibe el id de la tarea que hay que borrar, si el id de la tarea
+    //es -1 (No hay ID negativos), se entiende que hay que borrar todas las tareas
+    private void confirmarBorrar(int id){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if(id < 0){ //Es una operacion para borrar todas las actividades
+            builder.setTitle("Borrar todas las tareas");
+            builder.setMessage("¿Estás seguro de que quieres borrar todas las tareas? Una vez eliminadas no se podrán recuperar");
+
+            //Habilitamos el boton de confirmar y realizamos el borrado de todas las tareas
+            builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    gestorDB.eliminarTodo();
+                    actualizar(filtroActual);
+                }
+            });
+
+        } else{ //Es una operacion para borrar una actividad en concreto
+
+            builder.setTitle("Borrar la tarea seleccionada (ID: " + id + ")");
+            builder.setMessage("¿Estás seguro de que quieres borrar la tarea seleccionada? Una vez eliminada no se podrá recuperar");
+
+            //Habilitamos el boton de confirmar y realizamos el borrado de la tarea
+            builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    gestorDB.eliminarTarea(id);
+                    actualizar(filtroActual);
+                }
+            });
+        }
+
+        //Habilitamos el boton de cancelar
+        builder.setNegativeButton("Cancelar", null);
+        builder.create().show();
+    }
+
 
     private void advertenciaCaducidad(Cursor cursor){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
