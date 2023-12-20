@@ -15,8 +15,11 @@ import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
 
+
+/* Con el esta clase derivada de CursorAdapter gestionaremos los elementos de la lista de una forma más personalizada*/
 public class CustomCursorAdapter extends CursorAdapter {
 
+    //Constructor
     public CustomCursorAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
@@ -34,7 +37,7 @@ public class CustomCursorAdapter extends CursorAdapter {
     //Configura los datos en la vista para un elemento existente.
     @Override
     public void bindView(View view, final Context context, final Cursor cursor) {
-        // Configurar la vista con los datos del cursor
+        // Recuperamos los elementos de la lista para trabjar con ellos
         TextView nombreTextView = view.findViewById(R.id.tv_lista_nombre);
         TextView descripcionTextView = view.findViewById(R.id.tv_lista_descripcion);
         TextView fechaTextView = view.findViewById(R.id.tv_lista_fecha);
@@ -42,10 +45,10 @@ public class CustomCursorAdapter extends CursorAdapter {
         TextView idTextView = view.findViewById(R.id.tv_lista_id);
         LinearLayout item = view.findViewById(R.id.lv_item);
 
+        //Recuperamos los datos de la tarea
         final int id = cursor.getInt(cursor.getColumnIndex(DBManager.COL_ID));
         final boolean completada = (cursor.getInt(cursor.getColumnIndex(DBManager.COL_COMPLETADO)) == 1);
         finalizarButton.setEnabled(!completada);
-
 
         // Configurar los valores en las vistas
         nombreTextView.setText(cursor.getString(cursor.getColumnIndex(DBManager.COL_NOMBRE)));
@@ -68,13 +71,13 @@ public class CustomCursorAdapter extends CursorAdapter {
         finalizarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int filtro = ((MainActivity) context).getFiltro();
+                int filtro = ((MainActivity) context).getFiltro(); //Recuperamos el filtro que se esta aplicando para poder actualizar
 
-                // Lógica para finalizar la tarea
                 Log.i("Boton", "BOTON FINALIZAR PULSADO - ID: " + id);
+
+                //Marcamos la tarea como finalizada y actualizamos la lista
                 ((MainActivity) context).gestorDB.marcarTareaComoCompletada(Integer.toString(id));
                 ((MainActivity) context).actualizar(filtro);
-                Log.i("FILTRO", "Filtro aplicado---------------------------------------> " + filtro);
             }
         });
     }

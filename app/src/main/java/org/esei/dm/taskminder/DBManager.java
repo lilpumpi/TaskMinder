@@ -83,6 +83,7 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
 
+    //Devuelve las tareas en funcion del filtro aplicado
     public Cursor getTareasFiltradas(int filtro) {
         SQLiteDatabase db = this.getReadableDatabase();
         String where = null;
@@ -108,8 +109,8 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
 
-    //Inserta una actividad
-    public boolean insertarTarea(String stringId, String nombre, String descripcion, String fecha, boolean comlpetado){
+    //Inserta una tarea o actualiza una tarea existente
+    public boolean insertarTarea(String stringId, String nombre, String descripcion, String fecha, boolean completado){
         Cursor cursor = null;
         boolean toret = false;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -118,9 +119,10 @@ public class DBManager extends SQLiteOpenHelper {
         values.put(COL_NOMBRE, nombre);
         values.put(COL_DESCRIPCION, descripcion);
         values.put(COL_FECHA, fecha);
-        values.put(COL_COMPLETADO, comlpetado? 1:0);
+        values.put(COL_COMPLETADO, completado? 1:0);
 
         try{
+            //Comprobamos si existe la tarea buscando su ID
             db.beginTransaction();
             cursor = db.query(
                     TABLA_TAREA, //Nombre de la tabla
@@ -138,11 +140,11 @@ public class DBManager extends SQLiteOpenHelper {
 
             db.setTransactionSuccessful();
             toret = true;
-            Log.i("TAREA INSERTADA", "Tarea insertada-> id:" + stringId + " completada:" + comlpetado + "-------------------");
+            Log.i("TAREA INSERTADA", "Tarea insertada-> id:" + stringId + " completada:" + completado + "-------------------");
         } catch (SQLException exc){
             Log.e("DBManager.inserta", exc.getMessage());
         } finally {
-            if(cursor != null){ cursor.close(); }
+            if(cursor != null){ cursor.close(); } //Cerramos el cursor
 
             db.endTransaction();
         }
@@ -150,7 +152,8 @@ public class DBManager extends SQLiteOpenHelper {
         return toret;
     }
 
-    //Elimina una tarea de la base de datos
+
+    //Elimina una tarea concreta de la base de datos
     public boolean eliminarTarea(int id){
         boolean toret = false;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -177,7 +180,7 @@ public class DBManager extends SQLiteOpenHelper {
 
         try{
             db.beginTransaction();
-            db.delete(TABLA_TAREA, null, null);
+            db.delete(TABLA_TAREA, null, null); //Null, por lo que selecciona a todas
             db.setTransactionSuccessful();
 
         } catch(SQLException exc){
@@ -189,6 +192,7 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
 
+    //Cambia el estado de una tarea concreta a finalizada, cambiando su atributo "completado"
     public void marcarTareaComoCompletada(String stringId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

@@ -24,7 +24,6 @@ import java.util.Locale;
 
 public class EditorActivity extends AppCompatActivity {
 
-    private Calendar calendar;
     private TextView tv_operacion, tv_fecha;
     private EditText et_nombre;
     private TextInputEditText et_descripcion;
@@ -62,15 +61,13 @@ public class EditorActivity extends AppCompatActivity {
         et_nombre.setText(nombre);
         et_descripcion.setText(descripcion);
         tv_fecha.setText(fechaString);
-        Log.i("Completado?", "TAREA COMPLETADA?????????: " + completado + "--------------------------------------------------");
 
         //Habilitamos los botones
-
         //Configuramos el click del boton para seleccionar una fecha
         bt_fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Fecha", "--------------------------------------------------- " + fechaString);
+                //Seleccionamos la fecha y le pasamos como parametro la fecha que tiene la tarea
                 seleccionarFecha(formatStringToDate(fechaString));
             }
         });
@@ -99,7 +96,8 @@ public class EditorActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) { //Cuando se cambie el nombre se habilitara el boton guardar solo si los campos son validos
+            public void afterTextChanged(Editable editable) {
+                //Cuando se cambie el nombre se habilitara el boton guardar solo si los campos son validos
                 bt_guardar.setEnabled(comprobarInputs(et_nombre.getText().toString(), et_descripcion.getText().toString()));
             }
         });
@@ -116,21 +114,23 @@ public class EditorActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) { //Cuando se cambie la descripcion se habilitara el boton guardar solo si los campos son validos
+            public void afterTextChanged(Editable editable) {
+                //Cuando se cambie la descripcion se habilitara el boton guardar solo si los campos son validos
                 bt_guardar.setEnabled(comprobarInputs(et_nombre.getText().toString(), et_descripcion.getText().toString()));
             }
         });
-
 
 
         //Configuramos el click del boton para guardar los cambios
         bt_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Recuperamos los datos escritos en los campos de texto
                 String nombre = et_nombre.getText().toString();
                 String descripcion = et_descripcion.getText().toString();
                 String fechaString = tv_fecha.getText().toString();
 
+                //Creamos un intent y los enviamos a la actividad principal para que los gestione
                 Intent intent = new Intent();
                 intent.putExtra("id", id);
                 intent.putExtra("nombre", nombre);
